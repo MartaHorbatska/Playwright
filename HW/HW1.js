@@ -94,3 +94,31 @@ function calculateOperations() {
 
 // Run the function
 calculateOperations();
+
+
+/* Task 4. Написати умовну конструкцію, яка в залежності від значення набраного балу по 100-бальній шкалі, виводитиме відповідний результат. Зробити 2-ма різними способами через 2 різних умовних оператора.
+Для балів в діапазоні 0-49 – має виводитися оцінка ”Unsatisfied!”
+Для балів в діапазоні 50-70 – має виводитися оцінка ”Satisfied!”
+Для балів в діапазоні 71-87 – має виводитися оцінка “Good!”
+Для балів в діапазоні 88-100 – має виводитися оцінка “Excellent!”
+Для балів поза діапазоном 0-100 – має виводитися “Incorrect assessment!!” */
+
+function assessScore(score) {
+    if (score >= 0 && score <= 49) {
+        console.log("Unsatisfied!");
+    } else if (score >= 50 && score <= 70) {
+        console.log("Satisfied!");
+    } else if (score >= 71 && score <= 87) {
+        console.log("Good!");
+    } else if (score >= 88 && score <= 100) {
+        console.log("Excellent!");
+    } else {
+        console.log("Incorrect assessment!!");
+    }
+}
+
+// Example usage:
+assessScore(5);   // Output: "Unsatisfied!"
+assessScore(65);  // Output: "Satisfied!"
+assessScore(90);  // Output: "Excellent!"
+assessScore(101); // Output: "Incorrect assessment!!"
