@@ -82,7 +82,7 @@ let res3 = x < y; // Boolean conversion
 console.log(res3); // true
 console.log(typeof res3); // "boolean"
 
-let re4 = "text" / "text"
+let res4 = "text" / "text"
 console.log(res4); // NaN
 console.log(typeof res4); // "number"
 
