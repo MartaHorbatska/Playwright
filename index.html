@@ -1,49 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Including JavaScript</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>JavaScript intro</h1>
     <p>JavaScript is a powerful programming language!</p>
-
-    <button onclick="alert('Hello in JavaScript world!')">Click Me</button>
-
     <!-- JavaScript Code Should Be Inside <script> Tags -->
     <script>
-        function calculateOperations() {
-            let a = parseFloat(prompt("Введіть перше число:"));
-            let b = parseFloat(prompt("Введіть друге число:"));
-
-            if (isNaN(a) || isNaN(b)) {
-                alert("Будь ласка, введіть коректні числові значення!");
-                return;
-            }
-
-            let sum = a + b;
-            let difference = a - b;
-            let product = a * b;
-            let quotient = b !== 0 ? (a / b).toFixed(2) : "Ділення на нуль неможливе";
-
-            // Log results to the console
-            console.log(`Сума: ${sum}`);
-            console.log(`Різниця: ${difference}`);
-            console.log(`Добуток: ${product}`);
-            console.log(`Частка: ${quotient}`);
-
-            // Show results via alert
-            alert(`Результати:
-            Сума: ${sum}
-            Різниця: ${difference}
-            Добуток: ${product}
-            Частка: ${quotient}`);
-        }
-
-        // Run the function when the page loads
-        calculateOperations();
     </script>
 
 </body>
+
 </html>
