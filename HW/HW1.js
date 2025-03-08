@@ -107,6 +107,25 @@ if (score >= 0 && score <= 49) {
     console.log("Incorrect assessment!!");
 }
 
+
+let mark = parseInt(prompt("Enter any digit from 0-100"));
+switch (true) {
+    case (mark >=0 && mark <= 49):
+        console.log("Unsatisfied");
+        break;
+    case (mark >= 50 && mark <= 70):
+        console.log("Satisfied");
+        break;
+    case (mark >= 71 && mark <= 87):
+        console.log("Good");
+        break;
+    case (mark >= 88 && mark <= 100):
+        console.log("Excellent");
+        break;
+    default:
+        console.log("Incorrect assessment!");
+}
+
 /* Task 5. Напишіть програму на JavaScript, яка ітерується цілими числами від 1 до 50.
 Для числа, кратного двом потрібно додатково виводити " kratne 2!".
 Для числа, кратного чотирьом потрібно додатково виводити " kratne 4!".
