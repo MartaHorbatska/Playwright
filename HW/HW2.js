@@ -1,4 +1,4 @@
-/* Task 1. Реалізуйте функцію processData(num1, num2, action), яка приймає числові параметри num1, num2 і повертає результат їх обчислення в залежності від значення параметра action.
+/*  Task 1. Реалізуйте функцію processData(num1, num2, action), яка приймає числові параметри num1, num2 і повертає результат їх обчислення в залежності від значення параметра action.
 	У випадку якщо:
 -	action=”sum” функція має повернути суму
 -	action=”product” функція має повернути добуток
@@ -6,11 +6,31 @@
 За замовчуванням num1 і num2 рівні 0, а action ”sum”.
 	
 Приклад роботи:
-console.log(processData(10, 4, ”product”));		// 40
+console.log(processData(10, 4, ”product”));		// 40 */
 
+function processData(num1 = 0, num2 = 0, action = "sum") {
+    let result;
+    if (action === "sum") {
+        result = num1 + num2;
+    } else if (action === "product") {
+        result = num1 * num2;
+    }
+    else if (action === "square") {
+        result = num1 ** num2;
+    } else {
+        result = "Unknown action";
+    }
+    return result
+}
+console.log(processData()); // 0
+console.log(processData(10, 4, "sum")); // 14
+console.log(processData(10, 4, "product")); // 40
+console.log(processData(10, 4, "square")); // 10000
+console.log(processData(10, 4, "time")); //Unknown action
 
-Task 2.  Реалізуйте функцію findElem(arr, el), яка приймає параметри arr -   масив і el - елемент. Функція має визначити чи міститься елемент el в масиві arr, і повертати відповідне булеве значення.
-
+/*
+Task 2.  Реалізуйте функцію findElem(arr, el), яка приймає параметри arr - масив і el - елемент. Функція має визначити 
+чи міститься елемент el в масиві arr, і повертати відповідне булеве значення.
 Приклад роботи:
 const arr = [1, 2, 3, 4, "Alex", 10, "Nick"];
 console.log(findElem(arr, 7));		// false
