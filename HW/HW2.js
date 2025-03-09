@@ -58,12 +58,31 @@ return arr1;
 }
 console.log(deleteItem([3, 12, 16, 19, 21, 33], 16));
 
-/*
-Task 4. Реалізуйте функцію getCircleLength(r), яка приймає параметр r -  радіус кола і обчислює його довжину. Передбачити припинення виконання програми і генерацію помилки у випадку, якщо функції передано не числовий або менший-рівний 0 параметр.
+
+/* Task 4. Реалізуйте функцію getCircleLength(r), яка приймає параметр r -  радіус кола і обчислює його довжину. Передбачити припинення виконання програми і генерацію помилки у випадку, якщо функції передано не числовий або менший-рівний 0 параметр.
 Напишіть код, який використовує цю функцію та обробляє можливі виняткові ситуації.
 	Приклад роботи:
-getCircleLength(“five”); 	// “Incorrect radius - please, enter a positive  numeric value!”
+getCircleLength(“five”); 	// “Incorrect radius - please, enter a positive  numeric value!” */
 
+function getCircleLength(r) {
+    if (typeof r !== "number" || isNaN(r) || r <= 0) {
+        throw new Error("Incorrect radius - please, enter a positive numeric value!");
+    }
+    return 2 * Math.PI * r;
+}
+
+let input = prompt("Введіть радіус кола:"); //  ввести значення через промпт 
+let radius = parseFloat(input);             
+
+try {
+    let length = getCircleLength(radius);
+    alert("Довжина кола: " + length);          
+} catch (error) {
+    alert(`Неправильне значення: "${input}": ${error.message}`);  
+}
+
+
+/*
 Task 5. Реалізуйте функцію checkID(), яка пропонуватиме користувачу ввести власне ID. Валідні ID знаходяться в діапазоні від 1 до 1000.
 	Функція має генерувати в модальному вікні помилки у випадку, коли: 
 	- юзер ввів порожню стрічку (наприклад “The field is empty! Please enter your ID”), 
