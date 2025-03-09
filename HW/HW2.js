@@ -28,15 +28,23 @@ console.log(processData(10, 4, "product")); // 40
 console.log(processData(10, 4, "square")); // 10000
 console.log(processData(10, 4, "time")); //Unknown action
 
-/*
+/* 
 Task 2.  Реалізуйте функцію findElem(arr, el), яка приймає параметри arr - масив і el - елемент. Функція має визначити 
 чи міститься елемент el в масиві arr, і повертати відповідне булеве значення.
 Приклад роботи:
 const arr = [1, 2, 3, 4, "Alex", 10, "Nick"];
 console.log(findElem(arr, 7));		// false
-console.log(findElem(arr, "Alex"));		// true
+console.log(findElem(arr, "Alex"));		// true */
 
+const arr = [1, 2, 3, 4, "Alex", 10, "Nick"];
+function findElem (arr, el){ 
+    return arr.includes(el);
+}
+console.log(findElem(arr, 7)); // false
+console.log(findElem(arr, "Nick")); // true
+console.log(findElem(arr, 100000)); // false
 
+/*
 Task 3. Реалізуйте функцію deleteItem(arr, item), яка приймає параметри arr - масив і item – елемент масиву. Функція має видаляти елемент item з масиву arr, і повертати вихідний масив, який не містить цього елемента.
 
 Приклад роботи:
