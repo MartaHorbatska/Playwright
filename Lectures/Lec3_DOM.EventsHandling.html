@@ -1,0 +1,100 @@
+<!-- JS DOM. EVENT HANDLING 
+Documents object model
+
+ The following methods are used to search for HTML elements on a page:
+
+document.getElementById(value): selects an element whose id attribute is value // по айдішці
+
+document.getElementsByTagName(value): selects all elements for which the tag is equal to value // по тегу 
+document.getElementsByClassName(value): selects all elements that have the value class // клас може присвоюватись певнй ксті ел
+document.querySelector(value): selects the first element that matches the value CSS selector // в квері передаєм будь який селектор, верне перше співпадіння
+document.querySelectorAll(value): selects all elements that match the value CSS selector // поверне всі вузли які відповідають заданоме велью
+  -->
+
+<!-- Element search methods -->
+
+<!-- <div class="test2">Some text</div> -->
+<!-- <p id="test" class="test2">Another text</p>
+<p class="test2">One more text</p>
+<p></p>
+<input type="text" />
+<input type="radio" />
+
+<script>
+  const id = document.getElementById("test");
+  const class_ = document.getElementsByClassName("test2");
+  const tag = document.getElementsByTagName("p");
+  const x = document.querySelectorAll("div.test2");
+  const y = document.querySelector("p.test2");
+  console.log(y);
+</script>
+
+</body>
+</html> -->
+
+
+<!-- 
+
+The document object is the main "entry point" in the DOM. From it we can access any node.
+
+The document allows you to access frequently used elements of a web page through the properties:
+
+document.documentElement: provides access to the root <html> element
+document.body: provides access to the <body> element in a web page // весь контент сторінки
+document.images: contains a collection of all image objects (<img> elements) - до картинок
+document.links: contains a collection of links — elements <a> and <area> that have the href attribute defined / посилання 
+document.anchors: provides access to a collection of <a> elements that have a name attribute defined - колекція лінків і тегів 
+document.forms: contains a collection of all forms on a web page // форма допомагає знайти форму --> 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+  <script>
+    alert("document.body from HEAD: " + document.body) // не знайде елемент, бо баді ще не створене
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
+
+
+
+<script>
+  alert("document.body from BODY: " + document.body) // знайде елемент
+</script>
+<!-- 
+
+Each individual node, whether it is an HTML element, its attribute or text, in the DOM structure is represented by a Node object. 
+This object provides a number of properties with which we can obtain information about this node:
+
+Node.childNodes: contains a collection of child nodes // node то батьківський елемент а чайлдНодс буде вертати список вісх дочірніх вузлів
+firstChild: returns the first child node of the current node / 
+lastChild: returns the last child node of the current node / ост дочірній вузол
+previousSibling: returns the previous item that is on par with the current / попередній сусідський ел на тому самому рівні вкладеності
+nextSibling: returns the next element that is flush with the current / наступний сусідський ел на тому самому рівні вкладеності
+ownerDocument: returns the root node of the document / кореневий
+parentNode: returns the element that contains the current node / посилання на батьківський
+nodeName: returns node name / назва вузла 
+nodeType: returns node type as a number / тип вузла
+nodeValue: returns or sets the value of the node in plain text  - значення яке міститься в вузлі -->
+
+<!-- childNodes property -->
+
+<div>
+  <p>
+    <a>link</a> some text
+  </p>
+</div>
+
+<script>
+  const bodyNodes = document.body.childNodes;
+  for (let i = 0; i < bodyNodes.length; i++) {
+    console.log(bodyNodes[i]); // Text DIV Text SCRIPT
+  }
+</script>

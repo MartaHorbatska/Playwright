@@ -61,14 +61,13 @@ function deleteItem(arr1, item) {
 }
 console.log(deleteItem([3, 12, 16, 19, 21, 33], 16)); //  Було: [3, 12, 16, 19, 21, 33] -> Видаляємо 16 (індекс 2) -> Стало: [3, 12, 19, 21, 33]
 
-
 /* Task 4. Реалізуйте функцію getCircleLength(r), яка приймає параметр r -  радіус кола і обчислює його довжину. 
 Передбачити припинення виконання програми і генерацію помилки у випадку, якщо функції передано не числовий або менший-рівний 0 параметр.
 Напишіть код, який використовує цю функцію та обробляє можливі виняткові ситуації.
     Приклад роботи:
 getCircleLength(“five”); 	// “Incorrect radius - please, enter a positive  numeric value!” */
 
-function getCircleLength(r) {
+function getCircleLength(r) {  //  забороняє неправильні значення для змінної r
     if (typeof r !== "number" || isNaN(r) || r <= 0) {
         throw new Error("Incorrect radius - please, enter a positive numeric value!");
     }
@@ -95,7 +94,7 @@ try {
 В блокові catch передбачити виведення назви і опису помилки. */
 
 function checkId(id) {
-    if (id === "") {
+    if (id.trim() === "") { //  trim забирає лишні пробіли
         throw new Error("The field is empty! Please enter your ID"); // пусте поле
     }
     if (isNaN(id)) {
