@@ -1,39 +1,77 @@
 <!-- Task 1. На сторінці є форма "Новий користувач" із введеними даними користувача.
 Потрібно отримати дані з усіх полів та записати їх у наступні змінні name, phoneNumber, dateOfBirth, emailAddress. -->
-<!-- 
-HTML:
-<fieldset>
-    <legend align="center"> Новий користувач </legend>
-    <input value="Name" type="text" data-form="ПІБ" class="text-data arr" name="fio" placeholder="Введіть ПІБ">
-        <input value="+380-00-000-0000" type="phone" data-form="Номер телефону" class="arr" name="phone" placeholder="+380-00-000-0000">
-            <input value="2020-02-02" type="date" data-form="Дата народження" class="arr" name="birthday">
-                <input value="softserve@softserve.com" type="email" data-form="Електронна пошта" class="arr" placeholder="email@softserveinc.com"
-                    name="email">
-                    <input type="submit" class="btn">
-                    </fieldset>
-<script></script> -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <fieldset>
+        <legend align="center"> Новий користувач </legend>
+        <input value="Name" type="text" data-form="ПІБ" class="text-data arr" name="fio" placeholder="Введіть ПІБ">
+            <input value="+380-00-000-0000" type="phone" data-form="Номер телефону" class="arr" name="phone" placeholder="+380-00-000-0000">
+                <input value="2020-02-02" type="date" data-form="Дата народження" class="arr" name="birthday">
+                    <input value="softserve@softserve.com" type="email" data-form="Електронна пошта" class="arr" placeholder="email@softserveinc.com"
+                        name="email">
+                        <input type="submit" class="btn">
+                        </fieldset>
+    <script>
+    const name = document.getElementsByName("fio")[0].value; // поверне колекцію і 1ий ел з неї
+    const phoneNumber = document.getElementsByName("phone")[0].value;
+    const dateOfBirth = document.getElementsByName("birthday")[0].value;
+    const emailAddress = document.getElementsByName("email")[0].value;
 
+    console.log("Name:", name);
+    console.log("Phone Number:", phoneNumber);
+    console.log("Date of Birth:", dateOfBirth);
+    console.log("Email Address:", emailAddress);
+    </script> 
 
-                    
+</body>
+</html>
+
 <!-- Task 2.
 Для заданої HTML-сторінки: напишіть функцію addStyle(), яка спрацьовуватиме по кліку на кнопку button і змінюватиме:
 1) стиль вмісту тега <h2>: колір шрифту червоний, шрифт із підкресленням
 2) стиль вмісту тега <p>: колір шрифту коричневий, розмір шрифту 18 пс, шрифт сімейства "Comic Sans MS".
 3) стиль вмісту тега <span>: колір шрифту зелений, курсив
 4) вміст тега <div> не повинен відображатися в браузері. -->
-
-<!-- HTML:
-        <body>
-            <section>
-            <h2 class="header">Header</h2>
-                <p id='data'>DOM - document object model </p>
-                <span>Span</span>
-                <div>Invisible element</div>
-            </section>
-        <button id="btn">Add style</button>
-    </body> -->
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+    <h2 class="header">Header</h2>
+        <p id='data'>DOM - document object model </p>
+        <span>Span</span>
+        <div>Invisible element</div>
+    </section>
+<button id="btn">Add style</button>
+<script>
+    function changeBtn1(event){ 
+        document.querySelector("h2").style.cssText = "color:red; text-decoration: underline;";};
+    function changeBtn2(){
+        document.querySelector("p").style.cssText = "color:brown; font-size:18px; font-family:'Comic Sans MS';";};
+    function changeBtn3(){
+        document.querySelector("span").style.cssText = "color:green; font-style:italic; font-size:55px;";};
+    function changeBtn4(){
+        document.querySelector("div").style.display = "none";};
+    btn.onclick = function(){alert ("Prepare to changing");}
+    btn.addEventListener("click",changeBtn1 );
+    btn.addEventListener("click",changeBtn2 );
+    btn.addEventListener("click",changeBtn3 );
+    btn.addEventListener("click",changeBtn4 );
+</script>
+</body>
+</html>
+        
 
 <!-- Task 3. Реалізуйте програму, яка по натисканню на кнопку виводитиме повідомлення
 "I was pressed!", при наведенні на кнопку виводитиме повідомлення "Mouse on me!", а при відведенні курсора миші виводитиме 
@@ -45,9 +83,50 @@ I was pressed!
 Mouse is not on me!
 Mouse on me!   -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn {
+          padding: 20px 40px;
+          font-size: 24px;
+          background-color: rgb(24, 218, 34);
+          color: white;
+         }
+        #btn:hover {
+          background-color: rgb(63, 21, 250);
+        }
+      </style>
+</head>
+<body>
+    <button id="btn">Live button</button>
+    <p id="message"></p>
+  
+    <script>
+      const btn = document.getElementById("btn");
+      const message = document.getElementById("message");
+  
+      btn.addEventListener("mouseover", function () {
+        message.textContent = "Mouse on me!";
+      });
+  
+      btn.addEventListener("mouseout", function () {
+        message.textContent = "Mouse is not on me!";
+      });
+  
+      btn.addEventListener("click", function () {
+        alert("I was pressed!");
+      });
+    </script>
+    </body>
+</html>
+
 <!-- Task 4. Напишіть скріпт, який за допомогою засобів DOM створить для порожньої HTML-сторінки таку структуру з тегів і їх атрибутів. -->
 
-<body>
+ <!-- <body>
 <article class="article postList">
 <div id="container">
 <p>Post 1</p>
@@ -56,26 +135,45 @@ Mouse on me!   -->
 </div>
 </article>
 </body>
+ -->
 
-<script>
-const article = document.createElement("article");
-article.classList.add("article", "postList");
+<!DOCTYPE html>
+<html lang="en">
 
-// Створюємо <div> з id="container"
-const container = document.createElement("div");
-container.id = "container";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-// Створюємо 3 <p> елементи
-for (let i = 1; i <= 3; i++) {
-    const p = document.createElement("p");
-    p.textContent = `Post ${i}`;
-    container.appendChild(p);
-}
-// Збираємо все разом
-article.appendChild(container);
-document.body.appendChild(article);
-</script>
+<body>
+    <script>
+        const article = document.createElement("article");
+        article.classList.add("article", "postList");
+        const container = document.createElement("div");
+        container.id = "container";
+        const p1 = document.createElement("p");
+        p1.textContent = "Post 1";
+        container.appendChild(p1);
+
+        const p2 = document.createElement("p");
+        p2.textContent = "Post 2";
+        container.appendChild(p2);
+
+        const p3 = document.createElement("p");
+        p3.textContent = "Post 3";
+        container.appendChild(p3);
+       
+        article.appendChild(container);
+        document.body.appendChild(article);
+    </script>
+</body>
+
+</html>
+
 
 <!-- Task 5*. Відповідно до заданого мокапу написати простий веб-застосунок (HTML+JS), який дає змогу користувачу ввести дані в поле вводу і 
 по натисканню на кнопку Send опублікувати ці дані на сторінку в DOM із вказанням дати написання. 
 Після успішної публікації - очистити поле вводу без перезавантаження сторінки   -->
+
+

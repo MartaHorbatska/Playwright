@@ -48,7 +48,7 @@ document.forms: contains a collection of all forms on a web page // форма �
 
 
 
-<!DOCTYPE html>
+<!-- <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -58,16 +58,14 @@ document.forms: contains a collection of all forms on a web page // форма �
     alert("document.body from HEAD: " + document.body) // не знайде елемент, бо баді ще не створене
   </script>
 </head>
-<body>
+<body> -->
   
-</body>
-</html>
 
 
 
-<script>
+<!-- <script>
   alert("document.body from BODY: " + document.body) // знайде елемент
-</script>
+</script> --> -->
 <!-- 
 
 Each individual node, whether it is an HTML element, its attribute or text, in the DOM structure is represented by a Node object. 
@@ -86,7 +84,7 @@ nodeValue: returns or sets the value of the node in plain text  - значенн
 
 <!-- childNodes property -->
 
-<div>
+<!-- <div>
   <p>
     <a>link</a> some text
   </p>
@@ -97,4 +95,76 @@ nodeValue: returns or sets the value of the node in plain text  - значенн
   for (let i = 0; i < bodyNodes.length; i++) {
     console.log(bodyNodes[i]); // Text DIV Text SCRIPT
   }
-</script>
+</script> -->
+
+<!-- Table DOM Properties (for easier navigation):
+
+caption / tHead / tFoot – links to table elements <caption>, <thead>, <tfoot>
+tBodies – a list of <tbody> elements (can be multiple)
+rows – list of all <tr> rows (in <thead>, <tfoot>, and <tbody>)
+cells – list of <td> / <th> cells in a row
+sectionRowIndex – row number within its own section (e.g. thead, tbody)
+rowIndex – row number in the whole table
+cellIndex – cell number in a row -->
+
+<!-- <body>
+  <table>
+    <tr><td>Monday</td><td>Tuesday</td></tr>
+    <tr><td>Wednesday</td><td>Thursday</td></tr>
+  </table>
+
+  <script>
+    let elem = document.body.children[0]; // the <table> element
+    alert(elem.rows[0].cells[0].innerHTML); // → "Monday"
+  </script>
+</body> -->
+
+
+
+ <!-- forms 
+ document.forms [0] 
+ 
+ 
+ 
+ 
+ 
+ -->
+
+ <!-- <form name="registerForm">
+  <input name="surname" value="1" />
+  <input name="email" value="2" />
+</form>
+
+<script>
+  const myForm = document.forms.registerForm;
+  const elem = myForm.elements.surname;
+  console.log(elem.value); // 1
+</script> -->
+
+
+
+
+<!-- Inner HTMl дозволяж працювати в стрінговому форматі -->
+ <!-- Insertion methods -->
+
+<!-- <ol id="ol">
+  <li>0</li>
+  <li>1</li>
+  <li>2</li>
+</ol>
+
+<script>
+  ol.before('before'); // insert the string "before" before <ol>
+  ol.after('after');   // insert the string "after" after <ol>
+
+  let liFirst = document.createElement('li');
+  liFirst.innerHTML = 'prepend11';
+  ol.prepend(liFirst); // insert liFirst at the beginning of <ol>
+
+  let liLast = document.createElement('li');
+  liLast.innerHTML = 'append11';
+  ol.append(liLast); // insert liLast at the end of the <ol>
+</script> -->
+
+</body>
+</html>
