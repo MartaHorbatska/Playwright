@@ -126,52 +126,56 @@ Boeing-747: 11320 */
 
 
 class Plane {                                                                      //(a)
-    constructor(model, fuelSupply, fuelConsumption){
+    constructor(model, fuelSupply, fuelConsumption) {
         this.model = model; // модель літака
         this.fuelSupply = fuelSupply; // місткість запасу палива літака
         this.fuelConsumption = fuelConsumption; // середня витрата палива в літрах на 100 км польоту
     }
-    calcFlightRange(){                                                             // (b)
-        return this.fuelSupply / fuelConsumption * 100  ;
+    calcFlightRange() {                                                             // (b)
+        return this.fuelSupply / fuelConsumption * 100;
     }
-    // static sortFlightRange(planesArray){ 
-    //   }
-        
+    static sortFlightRange(planesArray) {
+        planesArray.sort(function(a, b) {
+            return a.calcFlightRange() - b.calcFlightRange();
+          }); //Порівнює два літаки a і b по дальності польоту
+        // for (let i = 0; i < planesArray.length; i++) {
+        //     const plane = planesArray[i];
+        //     console.log(plane.model + ": " + plane.calcFlightRange());
+        //   }
+
+        planesArray.forEach(plane => console.log(plane.model + ": " + plane.calcFlightRange()));
     }
-    class TransportPlane extends Plane {
-        constructor(model, fuelSupply, fuelConsumption, cargo, addTank) {
-          super(model, fuelSupply, fuelConsumption);
-          this.cargo = cargo;
-          this.addTank = addTank;
-        }
-      
-        calcFlightRange() {
-          return (this.fuelSupply + this.addTank) / this.fuelConsumption * 100;
-        }
-      }
-      class PassengerPlane extends Plane {
-        constructor(model, fuelSupply, fuelConsumption, passengers, refueling) {
-          super(model, fuelSupply, fuelConsumption);
-          this.passengers = passengers;
-          this.refueling = refueling;
-        }
-      
-        calcFlightRange() {
-          return (this.fuelSupply + this.refueling) / this.fuelConsumption * 100;
-        }
-      }
+}
+class TransportPlane extends Plane {
+    constructor(model, fuelSupply, fuelConsumption, cargo, addTank) {
+        super(model, fuelSupply, fuelConsumption);
+        this.cargo = cargo;
+        this.addTank = addTank;
+    }
+    calcFlightRange() {
+        return (this.fuelSupply + this.addTank) / this.fuelConsumption * 100;
+    }
+}
+class PassengerPlane extends Plane {
+    constructor(model, fuelSupply, fuelConsumption, passengers, refueling) {
+        super(model, fuelSupply, fuelConsumption);
+        this.passengers = passengers;
+        this.refueling = refueling;
+    }
+    calcFlightRange() {
+        return (this.fuelSupply + this.refueling) / this.fuelConsumption * 100;
+    }
+}
+class WarPlane extends Plane {
+    constructor(model, fuelSupply, fuelConsumption, missiles, aerodynamicsKoef) {
+        super(model, fuelSupply, fuelConsumption);
+        this.missiles = missiles;
+        this.aerodynamicsKoef = aerodynamicsKoef;
+    }
 
-      class WarPlane extends Plane {
-        constructor(model, fuelSupply, fuelConsumption, missiles, aerodynamicsKoef) {
-          super(model, fuelSupply, fuelConsumption);
-          this.missiles = missiles;
-          this.aerodynamicsKoef = aerodynamicsKoef;
-        }
-      
-        calcFlightRange() {
-          return (this.fuelSupply / this.fuelConsumption * 100) * this.aerodynamicsKoef;
-        }
-
+    calcFlightRange() {
+        return (this.fuelSupply / this.fuelConsumption * 100) * this.aerodynamicsKoef;
+    }
 }
 
 console.log("Unsorted range of planes:");
@@ -183,7 +187,8 @@ const plane3 = new WarPlane("F-22 Raptor", 8200, 320, 20, 1.2);
 console.log("F-22 Raptor:", plane3.calcFlightRange());
 console.log("Sorted range of planes:");
 const planesArray = [plane1, plane2, plane3];
-Plane.sortFlightRange(planesArray);
+Plane.sortFlightRange(planesArray); // виклик статичного методу який приймає масив літаків 
+// planesArray і сортує їх за дальністю польоту
 
 
 
