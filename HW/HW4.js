@@ -81,20 +81,21 @@ const stud3 = Student.studentBuilder();
 console.log(stud3.showFullName()) // d) Ihor Kohut
 console.log(stud3.direction) // qc
 
-/* Task 3. Реалізуйте клас Plane, конструктор якого приймає 3 параметри model - модель літака, fuelSupply - місткість запасу палива літака, fuelConsumption - 
+/* Task 3. 
+(a) Реалізуйте клас Plane, конструктор якого приймає 3 параметри model - модель літака, fuelSupply - місткість запасу палива літака, fuelConsumption - 
 середня витрата палива в літрах на 100 км польоту.
-Створіть метод класу calcFlightRange(), який визначає дальність польоту літака за формулою fuelSupply / fuelConsumption * 100 і повертає її.
-Створіть статичний метод класу sortFlightRange(planesArray), який приймає масив екземплярів класу planesArray, сортує дальність польоту літака 
+(b) Створіть метод класу calcFlightRange(), який визначає дальність польоту літака за формулою fuelSupply / fuelConsumption * 100 і повертає її.
+(c) Створіть статичний метод класу sortFlightRange(planesArray), який приймає масив екземплярів класу planesArray, сортує дальність польоту літака 
 в порядку зростання та виводить результат на консоль у форматі plane_model: дальність_польоту.
 
-Створіть клас TransportPlane, успадкований від класу Plane, конструктор якого приймає 5 параметрів 
+(d) Створіть клас TransportPlane, успадкований від класу Plane, конструктор якого приймає 5 параметрів 
 model - модель літака, fuelSupply - кількість палива, fuelConsumption - середня витрата палива в літрах на 100 км, cargo - максимальний тоннаж, 
 addTank - про додаткові баки літака. У цьому класі вам потрібно перевизначити метод calcFlightRange(), щоб врахувати, що запас палива fuelSupply 
 збільшується завдяки додатковим бакам addTank.
-Створіть клас PassengerPlane, який успадковується від класу Plane, конструктор якого приймає 5 параметрів model, fuelSupply, fuelConsumption , 
+(e)Створіть клас PassengerPlane, який успадковується від класу Plane, конструктор якого приймає 5 параметрів model, fuelSupply, fuelConsumption , 
 passengers – максимальна кількість пасажирів, refueling – кількість додаткового палива, отриманого при заправці. У цьому класі вам потрібно 
 перевизначити метод calcFlightRange(), щоб врахувати, що fuelSupply збільшується завдяки заправці refueling.
-Створити клас WarPlane, який успадковується від класу Plane, конструктор якого приймає 5 параметрів model, fuelSupply, fuelConsumption, missiles 
+(f)Створити клас WarPlane, який успадковується від класу Plane, конструктор якого приймає 5 параметрів model, fuelSupply, fuelConsumption, missiles 
 - кількість ракетного озброєння, aerodynamicsKoef - коефіцієнт аеродинаміки літака. У цьому класі вам потрібно перевизначити метод calcFlightRange() таким чином, 
 щоб врахувати, що дальність польоту літака збільшується пропорційно значенню аеродинамічного коефіцієнта aerodynamicsKoef.
 
@@ -124,10 +125,51 @@ An-225 Mriya: 8100
 Boeing-747: 11320 */
 
 
-class Plane {
-    constructor(){
+class Plane {                                                                      //(a)
+    constructor(model, fuelSupply, fuelConsumption){
+        this.model = model; // модель літака
+        this.fuelSupply = fuelSupply; // місткість запасу палива літака
+        this.fuelConsumption = fuelConsumption; // середня витрата палива в літрах на 100 км польоту
     }
+    calcFlightRange(){                                                             // (b)
+        return this.fuelSupply / fuelConsumption * 100  ;
+    }
+    // static sortFlightRange(planesArray){ 
+    //   }
+        
+    }
+    class TransportPlane extends Plane {
+        constructor(model, fuelSupply, fuelConsumption, cargo, addTank) {
+          super(model, fuelSupply, fuelConsumption);
+          this.cargo = cargo;
+          this.addTank = addTank;
+        }
+      
+        calcFlightRange() {
+          return (this.fuelSupply + this.addTank) / this.fuelConsumption * 100;
+        }
+      }
+class PassengerPlane extends Plane{
+
 }
+
+class WarPlane extends Plane{
+
+}
+
+console.log("Unsorted range of planes:");
+const plane1 = new TransportPlane("An-225 Mriya", 105000, 5000, 500, 300000);                  // (b)   
+console.log("An-225 Mriya: ", plane1.calcFlightRange());                                       // (f)  
+const plane2 = new PassengerPlane("Boeing-747", 193000, 2500, 410, 90000);
+console.log("Boeing-747:", plane2.calcFlightRange());
+const plane3 = new WarPlane("F-22 Raptor", 8200, 320, 20, 1.2);
+console.log("F-22 Raptor:", plane3.calcFlightRange());
+console.log("Sorted range of planes:");
+const planesArray = [plane1, plane2, plane3];
+Plane.sortFlightRange(planesArray);
+
+
+
 /* 
 Task 4*. Створіть клас Library із властивостями назви бібліотеки name та колекції книг books.
 Клас повинен мати реалізовані методи:

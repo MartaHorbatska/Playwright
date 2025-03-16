@@ -10,7 +10,7 @@ console.log(employee); */
 
 
 
-//2. using {} - літеральний спосіб через клбча і значення
+//2. using {} - літеральний спосіб через ключі  і значення
 
 const order = {
     number:10,
@@ -191,35 +191,250 @@ user2.name = "BOB";
 console.log(user2);
 
 
+// ---------------------- OOP Principles
+ // * Inheritance -- наслідування 
+ // * Polymorphism  -- дія зреалізована в інший спосіб
+ // * Encapsulation - задаємо певне обмеження ззовні на доступ певного функціоналу класу
+ // * Abstraction 
+
+// Inheritance
+class Animal {
+    constructor(kind) {
+      this.kind = kind;
+    }
+  
+    run() {
+      console.log(this.kind + " runs!");
+    }
+  }
+  
+  // Inherit from Animal specifying "extends Animal"
+  class Leopard extends Animal {
+    jump() {
+      console.log(this.kind + " jumps!");
+    }
+  }
+  
+  const leopard = new Leopard("Spotted leopard");
+  leopard.jump(); // Spotted leopard jumps! //завдяки наслідуванню 
+  //leopard.run();      // Spotted leopard runs!
+  
+
+ // Inheritance. Keyword super
+  
+/* extends	Leopard наслідує властивості та методи класу Animal
+super(...)	Викликає конструктор батьківського класу і ініціалізує kind, weight
+this.speed	Додає нову властивість, унікальну для Leopard
+leopard.run()	Метод, успадкований від Animal */
+
+class Animal {
+    constructor(kind, weight) {
+      this.kind = kind;
+      this.weight = weight;
+    }
+  
+    run() {
+      console.log(this.kind + " runs!");
+    }
+  }
+  
+  class Leopard extends Animal {
+    constructor(kind, weight, speed) {
+      super(kind, weight); // Виклик конструктора з батьківського класу
+      this.speed = speed;
+    }
+  
+    jump() {
+      console.log(this.kind + " jumps!");
+    }
+  }
+  
+  const leopard = new Leopard("Spotted leopard", 40, 60);
+  console.log(leopard.weight); // 40
+  console.log(leopard.speed);  // 60
+
+// множинне наслідування не підтримується в JS
+
+// ---------------------POLYMORPHISM
+
+/* super(kind, weight)	передає аргументи до конструктора Animal
+super.run()	викликає run() з батьківського класу (Animal)
+run() в Leopard	перевизначає метод run, додає додаткову логіку
+jump()	унікальний метод підкласу */
+
+class Animal {
+    constructor(kind, weight) {
+      this.kind = kind;
+      this.weight = weight;
+    }
+  
+    run() {
+      console.log(this.kind + " runs!");
+    }
+  }
+  
+  class Leopard extends Animal {
+    constructor(kind, weight, speed) {
+      super(kind, weight);        // викликає батьківський конструктор
+      this.speed = speed;
+    }
+  
+    run() {
+      //console.log(this.kind + " runs!"); // ← закоментовано, бо буде взято з super
+      super.run(); // виклик методу run() з Animal
+      console.log(this.kind + " getting ready to jump");
+    }
+  
+    jump() {
+      console.log(this.kind + " jumps!");
+    }
+  }
+  
+  const leopard = new Leopard("Spotted leopard", 40, 60);
+  leopard.run();
+  // Spotted leopard runs!
+  // Spotted leopard getting ready to jump
+  
+// ми беремо метод а базовому класі і перевизначаємо - оверрайдимо в дочірньому
 
 
+// -----------------INCAPSULATION
+// кавоварка - зовнішній інтерфейс щоб заварити каву без потреби мати доступ до внутрішньої частини
+// закриває внутріщнє, щоб дати доступ до зовнішнього
+ // модифікатори доступу public, private доступний всеердині класу, protected - немає в JS
+
+// Encapsulation. Access modifier
+// public private protected
+
+class CoffeeMachine { // в нас є клас кавомашина
+    waterAmount = 0; // the amount of water inside  
+  
+    constructor(power) { // приймає поле потужності 
+      this.power = power;
+      console.log(`Created a coffee-machine, power: ${power}`); // каже створюємо з потужністю  100 ват 
+    }
+  }
+  
+  // create the coffee machine
+  const coffeeMachine = new CoffeeMachine(100);   // від обєкта класу кофі машін ми пробуєм ззовні поза межами класу 
+  // доступитись до поля вотер емаунт 
+  console.log(coffeeMachine.waterAmount);
+  
+  // add water
+  coffeeMachine.waterAmount = 200; // присвоюєм нове значення 
+  console.log(coffeeMachine.waterAmount);
+  console.log(coffeeMachine);
+  
+/* 
+  waterAmount = 0	публічна властивість — її можна змінювати ззовні
+  this.power = power	задається при створенні (через конструктор)
+  coffeeMachine.waterAmount = 200	ззовні ми змінюємо кількість води
+ */
+
+// underscore _ — protected/private
+
+class CoffeeMachine {
+    _waterAmount = 0;
+  
+    get waterAmount() {
+      return this._waterAmount;
+    }
+  
+    set waterAmount(value) {
+      if (value < 0) throw new Error("Negative water");
+      this._waterAmount = value;
+    }
+  
+    constructor(power) {
+      this._power = power;
+    }
+  }
+  
+  let coffeeMachine = new CoffeeMachine(100);
+  
+  // coffeeMachine.waterAmount = -10; // ❌ Error: Negative water
+  
+  coffeeMachine._waterAmount = 100; // обхід через псевдоприватне поле
+  console.log(coffeeMachine._waterAmount); // 100
+  
+
+  /* _waterAmount	псевдоприватна властивість (не захищена насправді)
+  get waterAmount()	дозволяє читати coffeeMachine.waterAmount
+  set waterAmount(value)	дозволяє задати значення з перевіркою на < 0
+  coffeeMachine._waterAmount = 100	пряме втручання в приватність (⚠ не рекомендується)
+
+  NOTE: нижнє підкреслення (_) — це просто домовленість.
+  Для справжньої приватності краще використовувати #waterAmount (ES2022).
+ */
+// Encapsulation. Private properties
+
+class CoffeeMachine {
+    #waterLimit = 900;
+  
+    checkWater(value) {
+      if (value < 0) throw new Error("Negative water");
+      if (value > this.#waterLimit) throw new Error("Too much water");
+    }
+  }
+  
+  let coffeeMachine = new CoffeeMachine();
+  
+  // coffeeMachine.checkWater(1200); // ❌ Error: Too much water
+  // Can't access privates from outside of the class
+  console.log(coffeeMachine.#waterLimit); // ❌ SyntaxError
+  
+  coffeeMachine.#waterLimit = 1000; // ❌ SyntaxError
+  
+  #/* waterLimit	Справжня приватна властивість — доступна лише в класі
+  this.#waterLimit	Доступ до #waterLimit лише зсередини класу
+  coffeeMachine.#waterLimit	❌ Помилка: приватне, не можна викликати зовні */
 
 
+  class CoffeeMachine {
+    #waterLimit = 900;
+  
+    // Геттер
+    get waterLimit() {
+      return this.#waterLimit;
+    }
+  
+    // Сеттер
+    set waterLimit(value) {
+      if (typeof value !== "number" || value <= 0) {
+        throw new Error("Water limit must be a positive number");
+      }
+      this.#waterLimit = value;
+    }
+  
+    // Метод класу
+    classMethod() {
+      console.log("Example class method");
+    }
+  
+    // Перевірка
+    checkWater(value) {
+      if (value < 0) throw new Error("Negative water");
+      if (value > this.#waterLimit) throw new Error("Too much water");
+    }
+  }
+  
+  const cm = new CoffeeMachine();
 
+  console.log(cm.waterLimit); // 900 ✅ через геттер
+  
+  cm.waterLimit = 1000;       // ✅ через сеттер
+  
+  cm.checkWater(800);         // OK
+  // cm.checkWater(1200);     // ❌ Too much water
+  
+  cm.classMethod();           // Example class method
 
+  /* #waterLimit — справжнє приватне поле (доступне тільки всередині класу)
+  доступ до нього тільки через get waterLimit() та set waterLimit(value)
+ */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Task 4
+  
+// Task 2
 
 class Student {
 
