@@ -93,7 +93,7 @@ try {
 Якщо ID валідне юзер отримує відповідне сповіщення.
 В блокові catch передбачити виведення назви і опису помилки. */
 
-function checkId(id) {
+/* function checkId(id) {
     if (id.trim() === "") { //  trim забирає лишні пробіли
         throw new Error("The field is empty! Please enter your ID"); // пусте поле
     }
@@ -114,7 +114,7 @@ try {
 } catch (error) {
     alert(`${error.name}: ${error.message}`);
 }
-
+ */
 /*
 Task 6*. Реалізуйте функцію findArrDiff(arr1, arr2), яка приймає числові масиви arr1, arr2 і повертає масив чисел, які не повторюються у вихідних масивах.
 Приклад роботи:
