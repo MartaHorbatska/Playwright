@@ -166,29 +166,31 @@ posts: [
 ]
 } */
 
-async function loadUserProfile(userId) {
+ 
+async function loadUserProfile(userId) { // Реалізуйте функцію loadUserProfile(userId), яка отримує один аргумент ідентифікатор користувача userId.
     try {
         const profile = await fetchUserProfile(userId);
         const posts = await fetchUserPosts(userId);
 
         return {
-            profile,
+            profile, //Повертає об'єкт, що містить дві властивості:- profile - дані з fetchUserProfile- posts - дані з fetchUserPosts.
             posts
         };
     } catch (error) {
-        return "Error loading user data";
+        return "Error loading user data"; // Якщо виникає помилка в будь-якій з функцій, loadUserProfile повинна обробити помилку і повернути повідомлення: «Error loading user data».
     }
 }
 
-async function fetchUserProfile(userId) {
-    return new Promise((resolve) => {
+async function fetchUserProfile(userId) {  //Використовує асинхронні функції fetchUserProfile() і fetchUserPosts()  для отримання даних профілю і постів.
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve({ userId, name: "John Doe", age: 30 });
+            //reject("Failed to fetch user profile"); 
         }, 1000);
     });
 }
 
-async function fetchUserPosts(userId) {
+async function fetchUserPosts(userId) { // Використовує асинхронні функції fetchUserProfile() і fetchUserPosts()  для отримання даних профілю і постів.
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve([
@@ -197,20 +199,6 @@ async function fetchUserPosts(userId) {
             ]);
         }, 2000);
     });
-}
-
-async function loadUserProfile(userId) {
-    try {
-        const profile = await fetchUserProfile(userId);
-        const posts = await fetchUserPosts(userId);
-
-        return {
-            profile,
-            posts
-        };
-    } catch (error) {
-        return "Error loading user data";
-    }
 }
 
 loadUserProfile(1)
