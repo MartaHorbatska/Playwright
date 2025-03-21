@@ -241,3 +241,41 @@ updateCart(cart, { id: 3, name: "Tablet", price: 600, quantity: 1 })
 { id: 2, name: 'Smartphone', price: 800, quantity: 2 },
 { id: 3, name: 'Tablet', price: 600, quantity: 1 }
 ] */
+
+const cart = [
+    { id: 1, name: "Laptop", price: 1200, quantity: 1 },
+    { id: 2, name: "Smartphone", price: 800, quantity: 2 },
+];
+
+function updateCart(cart, newItem) {
+    let items = false;
+    const updatedCart = cart.map(function (item) {
+        if (item.id === newItem.id) {
+            items = true;
+            return {
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity + newItem.quantity
+
+            };
+        }
+        return item;
+    });
+
+    if (!items) {
+        updatedCart.push(newItem); // додаємо, якщо не було
+    }
+
+    return updatedCart;
+}
+
+
+console.log(
+updateCart(cart, { id: 2, name: "Smartphone", price: 800, quantity: 1 })
+);
+
+
+console.log(
+    updateCart(cart, { id: 3, name: "Tablet", price: 600, quantity: 1 })
+);
