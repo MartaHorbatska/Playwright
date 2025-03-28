@@ -71,7 +71,6 @@ response.end('Testing NodeJS server\n');
 //console will print the msg
 console.log('Server is running at http://127.0.0.1:8000/')}) */
 
-
 // const http = require("http");
 
 // http 
@@ -168,42 +167,42 @@ This method should be called in each request.
 // -+-+-+ Status code: 200
 // -+-+-+ Status message: OK
 
-// const http = require("http"); 
-// http 
-// .createServer(function (request, response){
-// //Send http header status 200 OK Content type html
-// response.writeHead(200, { "Content-Type": "text/html" });
-// // Логування статусу відповіді (не запиту)
-// console.log("Status code:", response.statusCode);        // 200
-// console.log("Status message:", response.statusMessage);  // OK
+const http = require("http"); 
+http 
+.createServer(function (request, response){
+//Send http header status 200 OK Content type html
+response.writeHead(200, { "Content-Type": "text/html" });
+// Логування статусу відповіді (не запиту)
+console.log("Status code:", response.statusCode);        // 200
+console.log("Status message:", response.statusMessage);  // OK
 
-// // Відправляємо відповідь клієнту
-// response.end("<h1>Header from server</h1>\n"); 
-// })
-//  // Запускаємо сервер
-// .listen(8080);
-// console.log("Server is running at http://127.0.0.1:8080/");
+// Відправляємо відповідь клієнту
+response.end("<h1>Header from server</h1>\n"); 
+})
+ // Запускаємо сервер
+.listen(8080);
+console.log("Server is running at http://127.0.0.1:8080/");
 
 // ****************   Example 5 ************// 
 
 // -+-+-+-+  Get request received  
 
-const http = require("http"); 
+// const http = require("http"); 
 
-const server = http.createServer(function (request, response) {
-  response.writeHead(200, { "Content-Type": "text/html" });
+// const server = http.createServer(function (request, response) {
+//   response.writeHead(200, { "Content-Type": "text/html" });
 
-  if (request.method === "GET") {
-    response.end("<h1>GET-request received</h1>");
-  } 
-  if (request.mwthod ==="POST"){
-    response.end("<h1>POST-request received</h1>"); // на кожен запит якась інша дія 
-  }
-  else {
-    response.end("<h1>Only GET supported</h1>");
-  }
-});
+//   if (request.method === "GET") {
+//     response.end("<h1>GET-request received</h1>");
+//   } 
+//   if (request.mwthod ==="POST"){
+//     response.end("<h1>POST-request received</h1>"); // на кожен запит якась інша дія 
+//   }
+//   else {
+//     response.end("<h1>Only GET supported</h1>");
+//   }
+// });
 
-server.listen(8080, () => {
-  console.log("Server is running at http://127.0.0.1:8080/");
-});
+// server.listen(8080, () => {
+//   console.log("Server is running at http://127.0.0.1:8080/");
+// });
