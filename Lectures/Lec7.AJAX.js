@@ -16,8 +16,6 @@ fetch(data)
 
 // fetch POST request
 
-// fetch POST request
-
 const data = {
     title: "name",
     body: "content",
@@ -228,3 +226,42 @@ console.log("100 10 1".match(/10?/g));
  console.log("Paragraph 2.3".match(/\d\.\d/));  // 2.3
  console.log("Paragraph 223".match(/\d\.\d/));  // null
  
+
+//task4
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Email list</title>
+   </head>
+ <body>
+   <h2>Email list</h2>
+   <button onclick="getEmailsButton()">Get emails</button>
+   <ul id="emailList"></ul>
+   
+   <script>
+   function getEmailsButton() {
+     fetch('https://fakestoreapi.com/users')
+       .then(response => {
+         if (!response.ok) {
+           throw new Error('Network response was not ok');
+         }
+         return response.json();
+       })
+       .then(users => {
+         const list = document.getElementById('emailList');
+         list.innerHTML = ''; // очищаємо список перед новим рендером
+         users.forEach(user => {
+           const li = document.createElement('li');
+           li.textContent = user.email;
+           list.appendChild(li);
+         });
+       })
+       .catch(error => {
+         console.error('Error fetching emails: ' + error);
+       });
+   }
+ </script>
+ </body>
+ </html>
