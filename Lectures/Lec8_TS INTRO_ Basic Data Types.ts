@@ -95,3 +95,23 @@ console.log (Fruits.Apple)  // [LOG]: 88
 const house: string | number = 23;
 const house2: string | number = "23"; //  задаємо множинні типи 
 
+// Narrowing types 
+function showData (data: string | number): void {
+    if (typeof data === "string") {
+    console.log(data.toUpperCase());
+    } else {
+    console.log(data.toFixed());
+    } 
+   }
+   showData("solid"); // SOLID
+   showData(33.45); // 3
+
+// TYPES ALIAS
+
+type UserId = number | string;
+function showUserId (id: UserId): void {
+ console.log(`Current user ID: ${id}`);
+}
+showUserId(33); // Current user ID: 33
+showUserId("12"); // Current user ID: 12
+
