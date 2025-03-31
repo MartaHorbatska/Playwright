@@ -30,16 +30,17 @@ console.log(result); // [ 'D', 'C', 'B', 'A' ]
 /* Task 2. 
 1) Створіть інтерфейс Parcel для представлення сутності в системі доставки посилок.
 Посилка містить такі властивості:
-§ id: ціле число, яке не можна змінити
-§ weight: плаваюче значення
-§ dimensions: інтерфейс «Dimensions».
-§ description: необов'язкове значення
-§ sender: може зберігати ідентифікаційний номер відправника або повне ім'я
-§ status: enum `PackageStatus`
-§ deliver: функція
-§ statusName: геттер.
+§ id: ціле число, яке не можна змінити -> readonly id: number
+§ weight: плаваюче значення -> weight: number
+§ dimensions: інтерфейс «Dimensions».   
+§ description: необов'язкове значення -> description?: string
+§ sender: може зберігати ідентифікаційний номер відправника або повне ім'я -> sender: string | number
+§ status: enum `PackageStatus` -> status: PackageStatus
+§ deliver: функція -> deliver(isSuccess: boolean): void 
+§ statusName: геттер -> readonly statusName: string, повертає тому можем рідонлі використати
 
 2) Інтерфейс Dimensions складається з length, width та height, усі з яких можуть бути числами з плаваючою комою.
+
 
 3) Enum PackageStatus має такі можливі значення: Pending, InTransit, Delivered, Lost.
 
@@ -73,7 +74,7 @@ item.deliver(true);
 console.log(item.statusName); // Delivered */
 
 interface Parcel {readonly id: number, weight: number, dimensions: Dimensions, description?: string, sender: string | number, status: PackageStatus,
-    deliver(isSuccess: boolean): void, readonly statusName: string } // 1 + getter (5)
+    deliver(isSuccess: boolean): void, readonly statusName: string } // 1 + getter statusName(5)
 interface Dimensions { length: number, width: number, height: number }; // 2
 enum PackageStatus { Pending, InTransit, Delivered, Lost }; // 3
 
