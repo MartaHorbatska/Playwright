@@ -9,6 +9,24 @@ const result = func(["A", "C", "D", "B"], "desc");
 console.log(result);
 // [ 'D', 'C', 'B', 'A' ] */
 
+type SortDirection = "asc" | "desc";
+type SortFunction = (arr: string[], direction: SortDirection) => string[];
+const superSort: SortFunction = (arr, direction) => {
+    const sorted = [...arr].sort();
+
+    if (direction === "asc") {
+        return sorted;
+    } else {
+        return sorted.reverse();
+    }
+};
+const names = ["Vlad", "Ira", "Nina", "Alex"];
+console.log(superSort(names, "asc")); // [ 'Alex', 'Ira', 'Nina', 'Vlad' ]
+const func: SortFunction = superSort;
+const result = func(["A", "C", "D", "B"], "desc");
+console.log(result); // [ 'D', 'C', 'B', 'A' ]
+
+
 /* Task 2. Створіть інтерфейс Parcel для представлення сутності в системі доставки посилок.
 Посилка містить такі властивості:
 § id: ціле число, яке не можна змінити
