@@ -27,7 +27,8 @@ const result = func(["A", "C", "D", "B"], "desc");
 console.log(result); // [ 'D', 'C', 'B', 'A' ]
 
 
-/* Task 2. Створіть інтерфейс Parcel для представлення сутності в системі доставки посилок.
+/* Task 2. 
+1) Створіть інтерфейс Parcel для представлення сутності в системі доставки посилок.
 Посилка містить такі властивості:
 § id: ціле число, яке не можна змінити
 § weight: плаваюче значення
@@ -38,35 +39,66 @@ console.log(result); // [ 'D', 'C', 'B', 'A' ]
 § deliver: функція
 § statusName: геттер.
 
-Функція deliver() приймає логічний параметр isSuccess, без значення, що повертається.
-Геттер statusName() повертає назву статусу посилки у вигляді рядка.
-Інтерфейс Dimensions складається з length, width та height, усі з яких можуть бути числами з плаваючою комою.
-Enum PackageStatus має такі можливі значення: Pending, InTransit, Delivered, Lost.
+2) Інтерфейс Dimensions складається з length, width та height, усі з яких можуть бути числами з плаваючою комою.
+
+3) Enum PackageStatus має такі можливі значення: Pending, InTransit, Delivered, Lost.
+
+4) Функція deliver() приймає логічний параметр isSuccess, без значення, що повертається.
+
+5) Геттер statusName() повертає назву статусу посилки у вигляді рядка.
+
+
 Приклад роботи:
 const item: Parcel = {
-id: 224,
-weight: 22.5,
-dimensions: {
-length: 105,
-width: 44,
-height: 50.5
-},
-
-sender: "Nick Scot",
-description: "Super power inside.",
-status: PackageStatus.Pending,
-deliver(isSuccess) {
-this.status = isSuccess
-? PackageStatus.Delivered
-: PackageStatus.Lost;
-},
-get statusName() {
-return PackageStatus[this.status];
-}
+    id: 224,
+    weight: 22.5,
+    dimensions: {
+        length: 105,
+        width: 44,
+        height: 50.5
+    },
+    sender: "Nick Scot",
+    description: "Super power inside.",
+    status: PackageStatus.Pending,
+    deliver(isSuccess) {
+        this.status = isSuccess
+            ? PackageStatus.Delivered
+            : PackageStatus.Lost;
+    },
+    get statusName() {
+        return PackageStatus[this.status];
+    }
 }
 item.deliver(true);
 console.log(item.statusName); // Delivered */
 
+interface Parcel {readonly id: number, weight: number, dimensions: Dimensions, description?: string, sender: string | number, status: PackageStatus,
+    deliver(isSuccess: boolean): void, readonly statusName: string } // 1 + getter (5)
+interface Dimensions { length: number, width: number, height: number }; // 2
+enum PackageStatus { Pending, InTransit, Delivered, Lost }; // 3
+
+const item: Parcel = {
+    id: 224,
+    weight: 22.5,
+    dimensions: {
+        length: 105,
+        width: 44,
+        height: 50.5
+    },
+    sender: "Nick Scot",
+    description: "Super power inside.",
+    status: PackageStatus.Pending,
+    deliver(isSuccess: boolean) { // 4
+        this.status = isSuccess
+            ? PackageStatus.Delivered
+            : PackageStatus.Lost;
+    },
+    get statusName() {  // 5
+        return PackageStatus[this.status];
+    }
+};
+item.deliver(true);
+console.log(item.statusName); // Delivered
 
 /* Task 3*. Створіть класи, які моделюють базову систему управління користувачами з користувачем та адміністратором.
 Існує абстрактний клас User з наступними членами:
