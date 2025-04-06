@@ -13,23 +13,29 @@ World
  */
 function display(text: string): void;
 function display(text1: string, text2: string): void;
-function display(textArray: string[]): void;
+function display(text2: string[]): void;
 
-function display(param1: string | string[], param2?: string): void {
-   if (Array.isArray(param1)) {
-       param1.forEach(str => console.log(str));
-   } else if (param2 !== undefined) {
-       console.log(param1);
-       console.log(param2);
+function display(text1: string | string[], text2?: string): void {
+   if (Array.isArray(text1)) {
+       text1.forEach(str => console.log(str));
+   } else if (text2 !== undefined) {
+       console.log(text1);
+       console.log(text2);
    } else {
-       console.log(param1);
+       console.log(text1);
    }
 }
 
-display("Hello, World!");
-display("Hello", "World!");
-display(["Hello", "World", "!"]);
-
+//Приклад роботи:
+display("Hello, World!"); 
+// Hello, World!
+display("Hello", "World!"); 
+// Hello
+// World!
+display(["Hello", "World", "!"]); 
+// Hello 
+// World 
+// !
 
 /* Task 2. Створіть дженерік функцію identity(), яка приймає масив як аргумент.
 Кожен елемент масиву повинен задовольняти умову: мати поле рейтингу rating
@@ -38,7 +44,7 @@ display(["Hello", "World", "!"]);
 console.log(identity([{name: "Anna", rating: 3}])) // 3
 console.log(identity([{title: "Encounter", rating: 3}, {title: "Dead to me", rating: 4}, {title: "Riverdale", rating: 5}])) // 4 */
 
-function identity<T extends { rating: number }>(items: T[]): number {
+function identity <T extends { rating: number }>(items: T[]): number {
     if (!items.length) return 0;
 
     let sum = 0;
