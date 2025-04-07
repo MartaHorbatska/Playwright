@@ -49,3 +49,24 @@ function identity<T extends { rating: number }>(items: T[]): number {
 //Приклад роботи:
 console.log(identity([{name: "Anna", rating: 3}])) // 3
 console.log(identity([{title: "Encounter", rating: 3}, {title: "Dead to me", rating: 4}, {title: "Riverdale", rating: 5}])) // 4 
+
+
+
+// function overload
+
+// створення прототипів
+
+
+
+// Generic вирішує такий варіант - bad practice
+function identity(data:string| number | boolean | number[] | string []):string| number | boolean | number[] | string [] {
+
+    return data
+}
+
+// good practice
+function identity <T> (data:T):T{
+
+    return data
+}
+
